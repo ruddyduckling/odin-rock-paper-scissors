@@ -8,16 +8,13 @@ function getComputerChoice() {
   let num = Math.floor(Math.random() * 3 + 1);
 
   if (num === 1) {
-    let choice = 'Rock';
-    console.log("Computer Choice is Rock.");
+    return 'Rock';
   }
   else if (num === 2) {
-    let choice = 'Paper';
-    console.log("Computer Choice is Paper.");
+    return 'Paper';
   }
   else {
-    let choice = 'Scissors';
-    console.log("Computer Choice is Scissors.");
+    return 'Scissors';
   }
 }
 
@@ -26,7 +23,6 @@ function getPlayerChoice() {
   choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase();
 
   if (choice === 'Rock' || choice === 'Paper' || choice === 'Scissors') {
-    console.log(`Player Choice is ${choice}.`);
     return choice;
   }
 
@@ -37,5 +33,30 @@ function getPlayerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-
+  if (playerSelection === computerSelection) {
+    alert("Its a tie, play again!");
+  }
+  else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
+    alert("You Lose! Paper beats Rock!");
+  }
+  else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
+    alert("You Win! Rock beats Scissors!");
+  }
+  else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
+    alert("You Win! Paper beats Rock!");
+  }
+  else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
+    alert("You Lose! Scissors beats Paper!");
+  }
+  else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
+    alert("You Lose! Rock beats Scissors!");
+  }
+  else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
+    alert("You Win! Scissors beats Rock!");
+  }
+  else {
+    alert("Something weird happened. Time to debug!");
+  }
 }
+
+playRound(getPlayerChoice(), getComputerChoice());
