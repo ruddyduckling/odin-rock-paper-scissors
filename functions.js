@@ -56,47 +56,64 @@ function playRound(playerSelection, computerSelection) {
   }
   else {
     alert("Something weird happened. Time to debug!");
-    console.warn("Something weird in the playRound function!")
+    console.warn("Something weird in the playRound function!");
   }
 }
 
-/*TODO: Redo game() function so that it works properly
-Right now, it functions properly, but I cannot get it 
-output an alert message with the final stats. */
 
 function game() {
   let playerWins = 0,
-        computerWins = 0,
-        draws = 0,
-        round = 0,
-        result;
+      computerWins = 0,
+      ties = 0,
+      round = 1;
 
-    while (playerWins < 3 ) {
-      if(computerWins < 3) {
-        round ++;
-        alert(`Starting round ${round}.
-              Player Wins: ${playerWins}.
-              PC Wins: ${computerWins}.
-              Draws: ${draws}`);
+  for (i = 1 ; i <= 5 ; i++) {
 
-        result = playRound(getPlayerChoice(), getComputerChoice());
-        console.log(result);
-        
-        
-        if (result.includes("Win")) {
-          playerWins ++;
-          alert("win");
-        }
-        else if (result.includes("Lose")) {
-          computerWins ++;
-          alert("lose");
-        }
-        else if (result.includes("tie")) {
-          alert("It's a tie, play again!");
-          draws ++;
-        }
+      scorecard(round, playerWins, computerWins, ties);
+      round++
+
+      let result = playRound(getPlayerChoice(), getComputerChoice());
+      
+      if (result.includes("Win")) {
+        console.log("Win");
+        playerWins ++;
       }
-    }
+      else if (result.includes("Lose")) {
+        console.log("Lose");
+        computerWins ++;
+      }
+      else if (result.includes("tie")) {
+        console.log("Tie");
+        ties ++;
+      }
+      else {
+        alert("Something\'s wrong");
+        console.warn("Something went wrong in result algorithm");
+      }
+  }
+  
+  gameOver(round, playerWins, computerWins, ties);
 }
 
 
+function scorecard(round, playerWins, computerWins, ties) {
+  alert(`Start round ${round}
+    Player Wins: ${playerWins}.
+    PC Wins: ${computerWins}
+    Ties: ${ties}`);
+}
+
+function gameOver(round, playerWins, computerWins, ties) {
+  let winner = 'Everybody';
+  if (playerWins > computerWins) {
+    winner = "You";
+  }
+  else {
+    winner = "Computer"
+  }
+
+  alert(`Game Over! ${winner} wins!
+    Player Wins: ${playerWins}.
+    PC Wins: ${computerWins}
+    Ties: ${ties}`);
+}
