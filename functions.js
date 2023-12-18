@@ -18,8 +18,7 @@ function getComputerChoice() {
   }
 }
 
-/*TODO: when invalid choice is entered, initiates new input correctly but then
-still returns original, invalid */
+
 function getPlayerChoice() {
   let choice = "";
 
