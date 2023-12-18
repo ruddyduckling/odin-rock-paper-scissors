@@ -24,20 +24,18 @@ function getComputerChoice() {
 function getPlayerChoice() {
   let choice = prompt('Rock, Paper or Scissors? ');
   choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase();
-  
-  if (choice === 'Rock') {
-    console.log("Player Choice is Rock.");
+
+  if (choice === 'Rock' || choice === 'Paper' || choice === 'Scissors') {
+    console.log(`Player Choice is ${choice}.`);
+    return choice;
   }
-  else if (choice === 'Paper') {
-    console.log("Player Choice is Paper.");
-  }
-  else if (choice === 'Scissors') {
-    console.log("Player Choice is Scissors.");
-  }
+
   else {
     alert("Please enter a valid choice.");
     getPlayerChoice();
   }
 }
 
-getPlayerChoice();
+function playRound(playerSelection, computerSelection) {
+
+}
