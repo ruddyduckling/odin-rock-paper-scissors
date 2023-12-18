@@ -18,19 +18,26 @@ function getComputerChoice() {
   }
 }
 
+/*TODO: when invalid choice is entered, initiates new input correctly but then
+still returns original, invalid */
 function getPlayerChoice() {
-  let choice = prompt('Rock, Paper or Scissors? ');
-  choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase();
+  let choice = "";
 
-  if (choice === 'Rock' || choice === 'Paper' || choice === 'Scissors') {
-    return choice;
-  }
+  while (choice != 'Rock' || choice != 'Paper' || choice != 'Scissors') {
 
-  else {
-    alert("Please enter a valid choice.");
-    getPlayerChoice();
+    choice = prompt('Rock, Paper or Scissors? ');
+    choice = choice[0].toUpperCase() + choice.slice(1).toLowerCase();
+
+    if (choice === 'Rock' || choice === 'Paper' || choice === 'Scissors') {
+      return choice;
+    }
+
+    else {
+      alert("Please enter a valid choice.");
+    }
   }
 }
+
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
@@ -108,11 +115,11 @@ function gameOver(round, playerWins, computerWins, ties) {
   if (playerWins > computerWins) {
     winner = "You";
   }
-  else {
+  else if (playerWins < computerWins) {
     winner = "Computer"
   }
 
-  alert(`Game Over! ${winner} wins!
+  alert(`Game Over! Winner: ${winner}!
     Player Wins: ${playerWins}.
     PC Wins: ${computerWins}
     Ties: ${ties}`);
