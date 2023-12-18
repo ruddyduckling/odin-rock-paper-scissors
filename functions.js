@@ -5,12 +5,12 @@ User inputs their choice
 User choice compared to computer choice */
 
 function getComputerChoice() {
-  let num = Math.floor(Math.random() * 3 + 1);
+  let choiceNum = Math.floor(Math.random() * 3 + 1);
 
-  if (num === 1) {
+  if (choiceNum === 1) {
     return 'Rock';
   }
-  else if (num === 2) {
+  else if (choiceNum === 2) {
     return 'Paper';
   }
   else {
@@ -34,29 +34,69 @@ function getPlayerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    alert("Its a tie, play again!");
+    return "Its a tie, play again!";
   }
   else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
-    alert("You Lose! Paper beats Rock!");
+    return "You Lose! Paper beats Rock!";
   }
   else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-    alert("You Win! Rock beats Scissors!");
+    return "You Win! Rock beats Scissors!";
   }
   else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-    alert("You Win! Paper beats Rock!");
+    return "You Win! Paper beats Rock!";
   }
   else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
-    alert("You Lose! Scissors beats Paper!");
+    return "You Lose! Scissors beats Paper!";
   }
   else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
-    alert("You Lose! Rock beats Scissors!");
+    return "You Lose! Rock beats Scissors!";
   }
   else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-    alert("You Win! Scissors beats Rock!");
+    return "You Win! Scissors beats Rock!";
   }
   else {
     alert("Something weird happened. Time to debug!");
+    console.warn("Something weird in the playRound function!")
   }
 }
 
-playRound(getPlayerChoice(), getComputerChoice());
+/*TODO: Redo game() function so that it works properly
+Right now, it functions properly, but I cannot get it 
+output an alert message with the final stats. */
+
+function game() {
+  let playerWins = 0,
+        computerWins = 0,
+        draws = 0,
+        round = 0,
+        result;
+
+    while (playerWins < 3 ) {
+      if(computerWins < 3) {
+        round ++;
+        alert(`Starting round ${round}.
+              Player Wins: ${playerWins}.
+              PC Wins: ${computerWins}.
+              Draws: ${draws}`);
+
+        result = playRound(getPlayerChoice(), getComputerChoice());
+        console.log(result);
+        
+        
+        if (result.includes("Win")) {
+          playerWins ++;
+          alert("win");
+        }
+        else if (result.includes("Lose")) {
+          computerWins ++;
+          alert("lose");
+        }
+        else if (result.includes("tie")) {
+          alert("It's a tie, play again!");
+          draws ++;
+        }
+      }
+    }
+}
+
+
