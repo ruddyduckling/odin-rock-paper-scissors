@@ -73,8 +73,6 @@ function game() {
       ties = 0,
       round = 1;
 
-  for (i = 1 ; i <= 5 ; i++) {
-
       scorecard(round, playerWins, computerWins, ties);
       round++
 
@@ -96,7 +94,7 @@ function game() {
         alert("Something\'s wrong");
         console.warn("Something went wrong in result algorithm");
       }
-  }
+  
   
   gameOver(round, playerWins, computerWins, ties);
 }
