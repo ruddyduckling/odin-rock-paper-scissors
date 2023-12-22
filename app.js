@@ -3,6 +3,9 @@ const cpuDisplay = document.querySelector('.cpu-display');
 const message = document.querySelector('.message');
 const winnerMessage = document.createElement('p');
 
+const gameOverMessage= document.createElement('p');
+message.appendChild(gameOverMessage);
+
 const choices = document.querySelectorAll('.choice')
 choices.forEach((choice) => {
   choice.addEventListener('click', ()=> {
@@ -64,6 +67,10 @@ function playRound(playerSelection, cpuSelection) {
 }
 
 function game(choice) {
+  //Clear gameOver message
+  gameOverMessage.textContent = '';
+
+  
   winnerMessage.textContent = playRound(choice, getComputerChoice());
   message.appendChild(winnerMessage);
 
@@ -83,7 +90,6 @@ function game(choice) {
 function gameOver() {
   playerScore = 0;
   cpuScore = 0;
-  const gameOverMessage= document.createElement('p');
+  
   gameOverMessage.textContent = 'Pick a choice to start another game to 5!';
-  message.appendChild(gameOverMessage);
 }
